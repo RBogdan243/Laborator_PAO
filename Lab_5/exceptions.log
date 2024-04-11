@@ -1,0 +1,10 @@
+OverflowException!
+Un element selectat a trecut peste limita superioara a lui Double!
+UnderflowException!
+Un element selectat a trecut peste limita inferioara a lui Double!
+NullParameterException!
+Lista data este nula!
+NullParameterException!
+Un parametru sau mai multi sunt nuli!
+EmptyStackException!
+Lista data este goala!
