@@ -49,7 +49,7 @@ public class SecretRoom extends Entrance {
     @Override
     public Item safe(int Try) {
         if(Try == this.Code) {
-            System.out.println("Aţi găsit cheia pentru ieşire");
+            System.out.println("Aţi găsit cheia pentru Exit");
             this.Code = 8008;
             return new Item("FinalKey", this.FinalKey);
         }

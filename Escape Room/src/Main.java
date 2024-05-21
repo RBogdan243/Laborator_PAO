@@ -239,21 +239,23 @@ public class Main {
                 pstmt.setInt(2, ((int) check));
                 ResultSet ps = pstmt.executeQuery();
                 if(ps.next()) {
-                    PreparedStatement pstmt1 = conn.prepareStatement("DELETE FROM public.\"Leaderboard\" WHERE LOWER(\"Username\") = ?;");
-                    pstmt1.setString(1, ((MyPlayer) user).getNume().toLowerCase());
+                    PreparedStatement pstmt1 = conn.prepareStatement("UPDATE public.\"Leaderboard\" SET \"Score\" = ?, \"Escape Time\" = ? WHERE \"Username\" = ?;");
+                    pstmt1.setInt(1, ((int) check));
+                    pstmt1.setString(2, ((MyPlayer) user).getTime().timeSec() / 60 + " minute şi " + (((MyPlayer) user).getTime().timeSec() - (((MyPlayer) user).getTime().timeSec() / 60) * 60) + " secunde");
+                    pstmt1.setString(3, ((MyPlayer) user).getNume());
                     pstmt1.executeUpdate();
-                    PreparedStatement pstmt2 = conn.prepareStatement("INSERT INTO public.\"Leaderboard\"(\"Username\", \"Score\", \"Escape Time\") VALUES (?, ?, ?);");
-                    pstmt2.setString(1, ((MyPlayer) user).getNume());
-                    pstmt2.setInt(2, ((int) check));
-                    pstmt2.setString(3, ((MyPlayer) user).getTime().timeSec() / 60 + " minute şi " + (((MyPlayer) user).getTime().timeSec() - (((MyPlayer) user).getTime().timeSec() / 60) * 60) + " secunde");
-                    pstmt2.executeUpdate();
                 }
                 else {
-                    PreparedStatement pstmt1 = conn.prepareStatement("INSERT INTO public.\"Leaderboard\"(\"Username\", \"Score\", \"Escape Time\") VALUES (?, ?, ?);");
-                    pstmt1.setString(1, ((MyPlayer) user).getNume());
-                    pstmt1.setInt(2, ((int) check));
-                    pstmt1.setString(3, ((MyPlayer) user).getTime().timeSec() / 60 + " minute şi " + (((MyPlayer) user).getTime().timeSec() - (((MyPlayer) user).getTime().timeSec() / 60) * 60) + " secunde");
-                    pstmt1.executeUpdate();
+                    PreparedStatement pstmt1 = conn.prepareStatement("SELECT * FROM public.\"Leaderboard\" WHERE LOWER(\"Username\") = ?;");
+                    pstmt1.setString(1, ((MyPlayer) user).getNume().toLowerCase());
+                    ResultSet rs = pstmt1.executeQuery();
+                    if(!rs.next()) {
+                        PreparedStatement pstmt2 = conn.prepareStatement("INSERT INTO public.\"Leaderboard\"(\"Username\", \"Score\", \"Escape Time\") VALUES (?, ?, ?);");
+                        pstmt2.setString(1, ((MyPlayer) user).getNume());
+                        pstmt2.setInt(2, ((int) check));
+                        pstmt2.setString(3, ((MyPlayer) user).getTime().timeSec() / 60 + " minute şi " + (((MyPlayer) user).getTime().timeSec() - (((MyPlayer) user).getTime().timeSec() / 60) * 60) + " secunde");
+                        pstmt2.executeUpdate();
+                    }
                 }
                 System.out.print("Doriţi să vedeţi Leaderboard-ul? y/n: ");
                 input = scanner.nextLine();
