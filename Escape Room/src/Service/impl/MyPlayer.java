@@ -140,18 +140,18 @@ public class MyPlayer implements Player {
         if(command.toLowerCase().equals("inspect")) {
             int item = scanner.nextInt();
             scanner.nextLine();
-            if(this.items[item-1].Type().equals("Key"))
+            if(this.items[item].Type().equals("Key"))
                 System.out.println("Item-ul selectat este o cheie pentru camera " + this.items[item].Nume() + '.');
-            else if(this.items[item-1].Type().equals("Letter"))
+            else if(this.items[item].Type().equals("Letter"))
                 System.out.println("Letter: " +this.items[item].Nume());
             else System.out.println("Clue: " + this.items[item].Nume());
         }
     }
 
     @Override
-    public Boolean CheckInventory(Neighbor vein) {
+    public Boolean CheckInventory(Neighbor vecin) {
         for(int i = 0; i < this.items.length; i++)
-            if(this.items[i].Nume().equals(vein.Nume()))
+            if(this.items[i].Nume().equals(vecin.Nume()))
                 return true;
         return false;
     }
