@@ -1,7 +1,7 @@
 package Service.impl;
 
 import Repository.impl.Item;
-import repository.impl.Neighbor;
+import Repository.impl.Neighbor;
 
 import java.util.ArrayList;
 import java.util.Random;

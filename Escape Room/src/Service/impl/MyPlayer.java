@@ -2,13 +2,14 @@ package Service.impl;
 
 import Repository.impl.Item;
 import Repository.impl.Timer;
-import repository.impl.Neighbor;
+import Repository.impl.Neighbor;
 import Service.Player;
 
+import java.security.Key;
 import java.util.*;
 
 public class MyPlayer implements Player {
-    private Item[] items = new Item[0];
+    private Item[] items = new Item[]{new Item("Key", "Intrare")};
     private Timer time = new Timer(0, 0);
     private static String Nume;
     private static MyPlayer instance;
@@ -132,18 +133,18 @@ public class MyPlayer implements Player {
 
     @Override
     public void ShowInventory() {
-        for(int i = 0; i < this.items.length; i++)
-            System.out.println((i+1) + " " + this.items[i].Type());
+        for(int i = 1; i < this.items.length; i++)
+            System.out.println((i) + " " + this.items[i].Type());
         Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine();
         if(command.toLowerCase().equals("inspect")) {
             int item = scanner.nextInt();
             scanner.nextLine();
             if(this.items[item-1].Type().equals("Key"))
-                System.out.println("Item-ul selectat este o cheie pentru camera " + this.items[item-1].Nume() + '.');
+                System.out.println("Item-ul selectat este o cheie pentru camera " + this.items[item].Nume() + '.');
             else if(this.items[item-1].Type().equals("Letter"))
-                System.out.println("Letter: " +this.items[item-1].Nume());
-            else System.out.println("Clue: " + this.items[item-1].Nume());
+                System.out.println("Letter: " +this.items[item].Nume());
+            else System.out.println("Clue: " + this.items[item].Nume());
         }
     }
 
@@ -157,12 +158,12 @@ public class MyPlayer implements Player {
 
     @Override
     public String getKey() {
-        for(int i = 0; i < this.items.length; i++)
-            System.out.println((i+1) + " " + this.items[i].Type());
+        for(int i = 1; i < this.items.length; i++)
+            System.out.println((i) + " " + this.items[i].Type());
         Scanner scanner = new Scanner(System.in);
         int index = scanner.nextInt();
         scanner.nextLine();
-        return this.items[index-1].Nume();
+        return this.items[index].Nume();
     }
 
     @Override

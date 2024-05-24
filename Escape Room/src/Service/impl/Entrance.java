@@ -1,7 +1,7 @@
 package Service.impl;
 import Repository.impl.Item;
-import repository.impl.Furniture;
-import repository.impl.Neighbor;
+import Repository.impl.Furniture;
+import Repository.impl.Neighbor;
 import Service.GameService;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package Service.impl;
 
-import repository.impl.Neighbor;
+import Repository.impl.Neighbor;
 
 import java.util.ArrayList;
 import java.util.List;
